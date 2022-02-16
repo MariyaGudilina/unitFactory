@@ -33,3 +33,46 @@ def input_user():
                 print("Занято")
                 continue
         return print("Клетка вне диапазона")
+    
+    def check_win():
+    win_cord = [((0, 0), (0, 1), (0, 2)), ((1, 0), (1, 1), (1, 2)), ((2, 0), (2, 1), (2, 2)),
+                ((0, 2), (1, 1), (2, 0)), ((0, 0), (1, 1), (2, 2)), ((0, 0), (1, 0), (2, 0)),
+                ((0, 1), (1, 1), (2, 1)), ((0, 2), (1, 2), (2, 2))]
+    for cord in win_cord:
+        symbols = []
+
+        for c in cord:
+            symbols.append(field[c[0]][c[1]])
+        if symbols == ["X", "X", "X"]:
+            print("Выиграл X!!!")
+            return True
+        if symbols == ["O", "O", "O"]:
+            print("Выиграл O!!!")
+            return True
+        return False
+
+
+
+
+num = 0
+
+while True:
+    num += 1
+    if num % 2 == 0:
+        symbol_user = "X"
+        print("Ходит крестик")
+    else:
+        symbol_user = "O"
+        print("Ходит нолик")
+
+    x, y = input_user()
+    show_field(symbol_user, x, y)
+
+    if check_win():
+        break
+
+    if num == 9:
+        print("Ничья")
+        break
+
+
